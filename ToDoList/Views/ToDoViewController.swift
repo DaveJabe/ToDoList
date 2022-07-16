@@ -44,7 +44,7 @@ class ToDoViewController: UIViewController {
         let view = UIView()
         return view
     }()
-        
+    
     private var containerIsHidden: Bool {
         return !(containerView.frame.origin.x == 0)
     }
@@ -53,10 +53,9 @@ class ToDoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Today's Tasks"
-                                                           
+        
         view.addSubviews(tableView, containerView)
-                
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -66,12 +65,24 @@ class ToDoViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        tableView.frame = view.bounds
+        let navigationBarHeight = navigationController?.navigationBar.bottom ?? 0
+        let tabBarHeight = tabBarController?.tabBar.height ?? 0
+        
+        tableView.frame = CGRect(x: 0,
+                                 y: navigationBarHeight,
+                                 width: view.width,
+                                 height: view.height)
         
         containerView.frame = CGRect(x: -view.width/3,
                                      y: navigationController?.navigationBar.bottom ?? 0,
                                      width: view.width/3,
-                                     height: view.height-(navigationController?.navigationBar.height ?? 0))
+                                     height: view.height-navigationBarHeight-tabBarHeight)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        toggleSort(toggle: false)
+        toggleTableViewEditing(toggle: false)
     }
     
     // MARK: - Methods
@@ -92,8 +103,11 @@ class ToDoViewController: UIViewController {
     
     private func toggleSort(toggle: Bool) {
         var info = [String:CGFloat]()
+        sortButton.isEnabled = false
         
-        UIView.animate(withDuration: 0.3) { [self] in
+        UIView.animate(withDuration: 0.3,
+                       
+                       animations: { [self] in
             
             if toggle {
                 tableView.allowsSelection = false
@@ -113,7 +127,13 @@ class ToDoViewController: UIViewController {
                 info = ["pointsMoved":containerView.width]
             }
             NotificationCenter.default.post(name: Notification.Name ("updateToggleOrigin"), object: nil, userInfo: info)
-        }
+            
+        },
+                       completion:
+                        
+                        { [weak self] _ in
+            self?.sortButton.isEnabled = true
+        })
     }
     
     private func toggleTableViewEditing(toggle: Bool) {
@@ -177,7 +197,7 @@ class ToDoViewController: UIViewController {
     }
 }
 
-    // MARK: - TableView
+// MARK: - TableView
 
 extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -196,7 +216,7 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
                        delegate: viewModel)
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             viewModel.removeItem(at: indexPath.row) {
@@ -226,7 +246,7 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-    // MARK: - Delegates
+// MARK: - Delegates
 
 extension ToDoViewController: UpdateItemViewControllerDelegate {
     func itemWasUpdated() {
