@@ -35,7 +35,7 @@ class UpdateItemViewController: UIViewController {
         return textField
     }()
     
-    private var titleStack: UIStackView = {
+    private let titleStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
@@ -43,7 +43,7 @@ class UpdateItemViewController: UIViewController {
         return stack
     }()
     
-    private var toggleStack: UIStackView = {
+    private let toggleStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
@@ -51,7 +51,7 @@ class UpdateItemViewController: UIViewController {
         return stack
     }()
     
-    private var saveButton: UIButton = {
+    private let saveButton: UIButton = {
         let button = UIButton()
         button.layer.masksToBounds = true
         button.layer.cornerRadius = Constants.cornerRadius
@@ -60,6 +60,16 @@ class UpdateItemViewController: UIViewController {
         button.backgroundColor = .systemBlue
         return button
     }()
+    
+    private let vStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillProportionally
+        stack.alignment = .fill
+        stack.spacing = Constants.smallPadding
+        return stack
+    }()
+    
     
     private let toggle: UISwitch = {
         let toggle = UISwitch()
@@ -96,13 +106,13 @@ class UpdateItemViewController: UIViewController {
         title = "Update Item"
         view.backgroundColor = .secondarySystemBackground
         
-        titleStack.addArrangedSubview(titleLabel)
-        titleStack.addArrangedSubview(titleTextField)
+        titleStack.addArrangedSubviews(titleLabel, titleTextField)
         
-        toggleStack.addArrangedSubview(toggleLabel)
-        toggleStack.addArrangedSubview(toggle)
+        toggleStack.addArrangedSubviews(toggleLabel, toggle)
         
-        view.addSubviews(titleStack, toggleStack, saveButton)
+        vStack.addArrangedSubviews(titleStack, toggleStack, saveButton)
+        
+        view.addSubview(vStack)
         
         titleTextField.text = itemTitle
         titleTextField.delegate = self
@@ -117,22 +127,10 @@ class UpdateItemViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        titleStack.frame = CGRect(x: 0,
-                                  y: Constants.padding*8,
-                                  width: Constants.width,
-                                  height: Constants.height)
-        titleStack.centerX(in: view)
+        let navigationBarHeight = navigationController?.navigationBar.height ?? 0
         
-        toggleStack.frame = CGRect(x: titleStack.leading,
-                                   y: titleStack.bottom+Constants.smallPadding,
-                                   width: Constants.width,
-                                   height: Constants.height)
-        
-        saveButton.frame = CGRect(x: 0,
-                                  y: view.bottom-Constants.padding*6,
-                                  width: Constants.width,
-                                  height: Constants.height)
-        saveButton.centerX(in: view)
+        vStack.frame = view.bounds.insetBy(dx: Constants.smallWidth*2, dy: Constants.smallWidth*7)
+        vStack.frame.origin.y = navigationBarHeight+Constants.padding*4
     }
     
     // MARK: - Methods
