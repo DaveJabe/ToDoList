@@ -127,7 +127,12 @@ class ToDoItemViewModel {
     }
     
     func removeItem(at index: Int, completion: (() -> Void)?) {
-        models.remove(at: index)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            print(CoreDataError.failedToGetAppDelegate.rawValue)
+            return
+        }
+        let itemToDelete = models.remove(at: index)
+        appDelegate.persistentContainer.viewContext.delete(itemToDelete)
         saveData()
         if let completion = completion {
             completion()

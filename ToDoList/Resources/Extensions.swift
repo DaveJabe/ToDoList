@@ -53,6 +53,16 @@ extension UIView {
     }
 }
 
+    // MARK: - UIStackView
+
+extension UIStackView {
+    func addArrangedSubviews(_ subviews: UIView...) {
+        for subview in subviews {
+            addArrangedSubview(subview)
+        }
+    }
+}
+
     // MARK: - UIViewController
 
 extension UIViewController {
