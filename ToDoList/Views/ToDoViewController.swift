@@ -96,6 +96,7 @@ class ToDoViewController: UIViewController {
         UIView.animate(withDuration: 0.3) { [self] in
             
             if toggle {
+                tableView.allowsSelection = false
                 let vc = SortMenuViewController(delegate: self)
                 add(vc, for: containerView)
                 containerView.frame.origin.x = 0
@@ -103,6 +104,7 @@ class ToDoViewController: UIViewController {
                 info = ["pointsMoved":-containerView.width]
             }
             else {
+                tableView.allowsSelection = true
                 containerView.frame.origin.x = -containerView.width
                 tableView.frame.origin.x = containerView.trailing
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
@@ -188,7 +190,10 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(with: viewModel.item(at: indexPath.row), tag: indexPath.row, delegate: viewModel)
+        cell.configure(title: viewModel.title(forItemAt: indexPath.row),
+                       completed: viewModel.completionStatus(forItemAt: indexPath.row),
+                       tag: indexPath.row,
+                       delegate: viewModel)
         return cell
     }
 
@@ -230,8 +235,8 @@ extension ToDoViewController: UpdateItemViewControllerDelegate {
 }
 
 extension ToDoViewController: SortMenuDelegate {
-    func sortOptionWasSelected(option: SortOptionName) {
-        viewModel.sortItems(by: option)
+    func sortOptionWasSelected(sortOption: String) {
+        viewModel.sortItems(by: sortOption)
         toggleSort(toggle: containerIsHidden)
         tableView.reloadData()
     }

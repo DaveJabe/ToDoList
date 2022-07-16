@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SortMenuDelegate: AnyObject {
-    func sortOptionWasSelected(option: SortOptionName)
+    func sortOptionWasSelected(sortOption: String)
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ToDoCell: UITableViewCell {
     
@@ -81,9 +82,9 @@ class ToDoCell: UITableViewCell {
         toggle.frame.origin.x += info["pointsMoved"] ?? 0
     }
     
-    func configure(with model: ToDoItem, tag: Int, delegate: ToDoCellDelegate) {
-        toDoLabel.text = model.title
-        toggle.setOn(model.completed, animated: false)
+    func configure(title: String, completed: Bool, tag: Int, delegate: ToDoCellDelegate) {
+        toDoLabel.text = title
+        toggle.setOn(completed, animated: false)
         self.tag = tag
         self.delegate = delegate
     }

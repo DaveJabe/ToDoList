@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum CoreDataKey {
+    static let entityName = "ToDoItem"
+    static let titleKey = "title"
+    static let completedKey = "completed"
+}

@@ -7,23 +7,9 @@
 
 import Foundation
 
-enum SortOptionName: String {
-    case forward = "Ascending"
-    case reverse = "Descending"
-    case completed = "Complete"
-    case incomplete = "Incomplete"
-}
-
-enum SortOptionIcon: String {
-    case forward = "arrow.up"
-    case reverse = "arrow.down"
-    case completed = "checkmark.circle.fill"
-    case incomplete = "circle"
-}
-
-struct SortOption {
-    static let forward = [SortOptionName.forward:SortOptionIcon.forward]
-    static let reverse = [SortOptionName.reverse:SortOptionIcon.reverse]
-    static let completed = [SortOptionName.completed:SortOptionIcon.completed]
-    static let incomplete = [SortOptionName.incomplete:SortOptionIcon.incomplete]
+enum SortOption {
+    static let forward = (option: "A-Z", iconName: "arrow.up")
+    static let reverse = (option: "Z-A", iconName: "arrow.down")
+    static let completed = (option: "Complete", iconName: "checkmark.circle.fill")
+    static let incomplete = (option: "Incomplete", iconName: "circle")
 }

@@ -9,29 +9,20 @@ import Foundation
 
 class SortMenuViewModel {
     
-    var sortParameters: [[SortOptionName:SortOptionIcon]] = [SortOption.forward,
-                                                                   SortOption.reverse,
-                                                                   SortOption.completed,
-                                                                   SortOption.incomplete]
+    private var sortOptions = [SortOption.forward,
+                               SortOption.reverse,
+                               SortOption.completed,
+                               SortOption.incomplete]
     
-    func sortParameter(at index: Int) -> SortOptionName {
-        guard let param = sortParameters[index].first?.key else {
-            return .forward
-        }
-        return param
+    var sortOptionsCount: Int {
+        return sortOptions.count
     }
     
-    func parameterName(at index: Int) -> String {
-        guard let name = sortParameters[index].first?.key.rawValue else {
-            return ""
-        }
-        return name
+    func sortOptionName(at index: Int) -> String {
+        return sortOptions[index].option
     }
     
-    func paramaterIcon(at index: Int) -> String {
-        guard let icon = sortParameters[index].first?.value.rawValue else {
-            return ""
-        }
-        return icon
+    func sortOptionIcon(at index: Int) -> String {
+        return sortOptions[index].iconName
     }
 }

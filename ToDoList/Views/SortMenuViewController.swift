@@ -19,7 +19,7 @@ class SortMenuViewController: UIViewController {
     
     private weak var delegate: SortMenuDelegate?
     
-    private var viewModel = SortMenuViewModel()
+    private lazy var viewModel = SortMenuViewModel()
     
     // MARK: - Lifecycle
     
@@ -51,26 +51,25 @@ class SortMenuViewController: UIViewController {
 extension SortMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.sortParameters.count
+        return viewModel.sortOptionsCount
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Sort"
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SortMenuCell.identifier, for: indexPath) as? SortMenuCell else {
             return UITableViewCell()
         }
         
-        cell.configure(iconName: viewModel.paramaterIcon(at: indexPath.row),
-                       paramName: viewModel.parameterName(at: indexPath.row))
+        cell.configure(iconName: viewModel.sortOptionIcon(at: indexPath.row),
+                       paramName: viewModel.sortOptionName(at: indexPath.row))
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.sortOptionWasSelected(option: viewModel.sortParameter(at: indexPath.row))
+        delegate?.sortOptionWasSelected(sortOption: viewModel.sortOptionName(at: indexPath.row))
     }
 }

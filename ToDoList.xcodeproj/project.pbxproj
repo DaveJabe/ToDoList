@@ -27,6 +27,9 @@
 		214D200C28826ABA00D49943 /* SortMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D200B28826ABA00D49943 /* SortMenuViewModel.swift */; };
 		214D200E288270DB00D49943 /* SortMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D200D288270DB00D49943 /* SortMenuDelegate.swift */; };
 		214D2010288286DC00D49943 /* SortOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D200F288286DC00D49943 /* SortOptionModel.swift */; };
+		21D010CD288338730001991E /* ToDoCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21D010CB288338730001991E /* ToDoCoreDataModel.xcdatamodeld */; };
+		21D010CF288343170001991E /* CoreDataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010CE288343170001991E /* CoreDataKeys.swift */; };
+		21D010D1288343E70001991E /* CoreDataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D0288343E70001991E /* CoreDataErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		214D200B28826ABA00D49943 /* SortMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMenuViewModel.swift; sourceTree = "<group>"; };
 		214D200D288270DB00D49943 /* SortMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMenuDelegate.swift; sourceTree = "<group>"; };
 		214D200F288286DC00D49943 /* SortOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionModel.swift; sourceTree = "<group>"; };
+		21D010CC288338730001991E /* ToDoCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		21D010CE288343170001991E /* CoreDataKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataKeys.swift; sourceTree = "<group>"; };
+		21D010D0288343E70001991E /* CoreDataErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,7 @@
 		214D1FDB288204EB00D49943 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				21D010CA2882F9200001991E /* Core Data */,
 				214D1FFD2882060600D49943 /* Resources */,
 				214D20002882078A00D49943 /* Delegates */,
 				214D1FF82882056A00D49943 /* Models */,
@@ -113,7 +120,6 @@
 			children = (
 				214D1FF22882052900D49943 /* ToDoItemViewModel.swift */,
 				214D200B28826ABA00D49943 /* SortMenuViewModel.swift */,
-				214D20052882186900D49943 /* AlertModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -123,6 +129,7 @@
 			children = (
 				214D1FF42882053900D49943 /* ToDoItemModel.swift */,
 				214D200F288286DC00D49943 /* SortOptionModel.swift */,
+				214D20052882186900D49943 /* AlertModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -147,6 +154,16 @@
 				214D200D288270DB00D49943 /* SortMenuDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		21D010CA2882F9200001991E /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				21D010CB288338730001991E /* ToDoCoreDataModel.xcdatamodeld */,
+				21D010CE288343170001991E /* CoreDataKeys.swift */,
+				21D010D0288343E70001991E /* CoreDataErrors.swift */,
+			);
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,9 +243,12 @@
 				214D1FF32882052900D49943 /* ToDoItemViewModel.swift in Sources */,
 				214D20082882637200D49943 /* SortMenuViewController.swift in Sources */,
 				214D1FFA288205F200D49943 /* ToDoCell.swift in Sources */,
+				21D010CD288338730001991E /* ToDoCoreDataModel.xcdatamodeld in Sources */,
 				214D20062882186A00D49943 /* AlertModel.swift in Sources */,
+				21D010CF288343170001991E /* CoreDataKeys.swift in Sources */,
 				214D1FE1288204EB00D49943 /* ToDoViewController.swift in Sources */,
 				214D1FDD288204EB00D49943 /* AppDelegate.swift in Sources */,
+				21D010D1288343E70001991E /* CoreDataErrors.swift in Sources */,
 				214D200E288270DB00D49943 /* SortMenuDelegate.swift in Sources */,
 				214D2010288286DC00D49943 /* SortOptionModel.swift in Sources */,
 				214D20022882079900D49943 /* UpdateItemViewControllerDelegate.swift in Sources */,
@@ -456,6 +476,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		21D010CB288338730001991E /* ToDoCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				21D010CC288338730001991E /* ToDoCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 21D010CC288338730001991E /* ToDoCoreDataModel.xcdatamodel */;
+			path = ToDoCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 214D1FD1288204EB00D49943 /* Project object */;
 }
