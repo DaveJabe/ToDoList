@@ -27,7 +27,7 @@ extension UIView {
     func center(in superView: UIView) {
         center = superView.center
     }
-    
+
     var width: CGFloat {
         return frame.size.width
     }

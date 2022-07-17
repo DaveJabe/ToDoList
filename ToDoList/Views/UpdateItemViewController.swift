@@ -11,44 +11,11 @@ class UpdateItemViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = Constants.semibold
-        label.text = "Title:"
-        label.numberOfLines = 1
-        return label
-    }()
-    
-    private let toggleLabel: UILabel = {
-        let label = UILabel()
-        label.font = Constants.semibold
-        label.text = "Completed:"
-        label.numberOfLines = 1
-        return label
-    }()
-    
-    private let titleTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "No Title"
-        textField.returnKeyType = .done
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-    
-    private let titleStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.distribution = .fillProportionally
-        return stack
-    }()
-    
-    private let toggleStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.distribution = .fillProportionally
-        return stack
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(TextFieldCell.self, forCellReuseIdentifier: TextFieldCell.identifier)
+        tableView.register(ToggleCell.self, forCellReuseIdentifier: ToggleCell.identifier)
+        return tableView
     }()
     
     private let saveButton: UIButton = {
@@ -61,39 +28,21 @@ class UpdateItemViewController: UIViewController {
         return button
     }()
     
-    private let vStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.distribution = .fillProportionally
-        stack.alignment = .fill
-        stack.spacing = Constants.smallPadding
-        return stack
-    }()
-    
-    
-    private let toggle: UISwitch = {
-        let toggle = UISwitch()
-        return toggle
-    }()
-    
     private weak var viewModel: ToDoItemViewModel?
     
+    private var cellViewModel: UpdateItemCellViewModel
+    
     private weak var delegate: UpdateItemViewControllerDelegate?
-    
-    private var itemTitle: String
-    
-    private var completed: Bool
     
     private var index: Int
     
     // MARK: - Lifecycle
     
-    init(viewModel: ToDoItemViewModel, delegate: UpdateItemViewControllerDelegate, itemTitle: String, completed: Bool, index: Int) {
+    init(viewModel: ToDoItemViewModel, delegate: UpdateItemViewControllerDelegate, itemTitle: String, isCompleted: Bool, index: Int) {
         self.viewModel = viewModel
         self.delegate = delegate
-        self.itemTitle = itemTitle
-        self.completed = completed
         self.index = index
+        cellViewModel = UpdateItemCellViewModel(itemTitle: itemTitle, isCompleted: isCompleted)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -106,54 +55,79 @@ class UpdateItemViewController: UIViewController {
         title = "Update Item"
         view.backgroundColor = .secondarySystemBackground
         
-        titleStack.addArrangedSubviews(titleLabel, titleTextField)
+        view.addSubviews(tableView, saveButton)
         
-        toggleStack.addArrangedSubviews(toggleLabel, toggle)
-        
-        vStack.addArrangedSubviews(titleStack, toggleStack, saveButton)
-        
-        view.addSubview(vStack)
-        
-        titleTextField.text = itemTitle
-        titleTextField.delegate = self
-        
-        toggle.setOn(completed, animated: false)
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+                
         saveButton.addTarget(self,
                              action: #selector(saveData),
                              for: .touchUpInside)
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let navigationBarHeight = navigationController?.navigationBar.height ?? 0
+        tableView.frame = view.bounds
         
-        vStack.frame = view.bounds.insetBy(dx: Constants.smallWidth*2, dy: Constants.smallWidth*7)
-        vStack.frame.origin.y = navigationBarHeight+Constants.padding*4
+        saveButton.frame = CGRect(x: 0,
+                                  y: tableView.height/2,
+                                  width: Constants.width,
+                                  height: Constants.height)
+        saveButton.centerX(in: view)
     }
     
     // MARK: - Methods
     
     @objc private func saveData() {
-        guard let text = titleTextField.text else { return }
-        viewModel?.updateItem(title: text, completed: toggle.isOn, at: index) { success in
-            if !success {
-                presentAlert(alert: Alert.emptyTextAlert, actions: [AlertAction.ok])
-            }
-            else {
+        viewModel?.updateItem(title: cellViewModel.newTitle,
+                              completed: cellViewModel.newCompletion,
+                              at: index) { success in
+            if success {
                 delegate?.itemWasUpdated()
                 navigationController?.popViewController(animated: true)
+            }
+            else {
+                presentAlert(alert: Alert.emptyTextAlert, actions: [AlertAction.ok])
             }
         }
     }
 }
 
-    // MARK: - Textfield
+    // MARK: - TableView
 
-extension UpdateItemViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+extension UpdateItemViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Update Fields Below"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellViewModel.cellCount()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.height
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        switch cellViewModel.cellType(at: indexPath.row) {
+            
+        case .textFieldCell(let model):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TextFieldCell.identifier, for: indexPath) as? TextFieldCell else {
+                return UITableViewCell()
+            }
+            cell.configure(title: model.title, textFieldText: model.textFieldText, delegate: cellViewModel)
+            return cell
+            
+        case .toggleCell(let model):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ToggleCell.identifier, for: indexPath) as? ToggleCell else {
+                return UITableViewCell()
+            }
+            cell.configure(title: model.title, isCompleted: model.isOn, delegate: cellViewModel)
+            return cell
+        }
     }
 }

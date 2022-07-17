@@ -15,18 +15,21 @@ class ToDoCell: UITableViewCell {
     static let identifier = "ToDoCell"
     
     private weak var delegate: ToDoCellDelegate?
-        
+    
     private let toDoLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = Constants.semibold
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let toggle: UISwitch = {
-        let toggle = UISwitch()
-        toggle.setOn(false, animated: false)
-        return toggle
+    private let completionButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.tag = 0
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     // MARK: - Lifecycle
@@ -35,12 +38,15 @@ class ToDoCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .default
-        contentView.addSubviews(toggle, toDoLabel)
-        toggle.addTarget(self, action: #selector(toggled), for: .valueChanged)
+        contentView.addSubviews(completionButton, toDoLabel)
+        
+        completionButton.addTarget(self,
+                                   action: #selector(toggled),
+                                   for: .touchUpInside)
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateToggleOrigin(_:)),
-                                               name: Notification.Name ("updateToggleOrigin"),
+                                               selector: #selector(updateButtonOrigin(_:)),
+                                               name: Notification.Name ("updateButtonOrigin"),
                                                object: nil)
     }
     
@@ -50,46 +56,59 @@ class ToDoCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        toDoLabel.frame = CGRect(x: Constants.smallPadding,
-                                 y: 0,
-                                 width: Constants.width,
-                                 height: contentView.height)
         
-        let toggleX = contentView.width-toggle.width-5
-        
-        toggle.frame = CGRect(x: toggleX,
-                              y: 0,
-                              width: Constants.smallWidth,
-                              height: contentView.height)
-        toggle.center.y = contentView.center.y
+        NSLayoutConstraint.activate([toDoLabel.layoutMarginsGuide.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.padding),
+                                     toDoLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+                                     toDoLabel.layoutMarginsGuide.topAnchor.constraint(equalTo: contentView.topAnchor),
+                                     toDoLabel.layoutMarginsGuide.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                                     
+                                     completionButton.layoutMarginsGuide.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.padding),
+                                     completionButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+                                     completionButton.layoutMarginsGuide.topAnchor.constraint(equalTo: contentView.topAnchor),
+                                     completionButton.layoutMarginsGuide.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         toDoLabel.text = ""
-        toggle.setOn(false, animated: false)
+        completionButton.setImage(nil, for: .normal)
         tag = 0
     }
     
     // MARK: - Methods
     
+    private func setCompletionButtonImage() {
+        switch completionButton.tag {
+        case 0:
+            completionButton.setImage(UIImage(systemName: "circle"), for: .normal)
+        case 1:
+            completionButton.setImage(UIImage(systemName: "circle.circle.fill"), for: .normal)
+        default:
+            print("error!")
+        }
+    }
+    
     @objc private func toggled() {
-        delegate?.toDoItemWasToggled(on: toggle.isOn, index: tag)
+        let isCompleted = completionButton.tag == 1
+        completionButton.tag = isCompleted ? 0 : 1
+        setCompletionButtonImage()
+        delegate?.toDoItemWasToggled(on: completionButton.tag == 1, index: tag)
     }
     
-    @objc private func updateToggleOrigin(_ sender: Notification) {
+    @objc private func updateButtonOrigin(_ sender: Notification) {
         guard let info = sender.userInfo as? [String:CGFloat] else { return }
-        toggle.frame.origin.x += info["pointsMoved"] ?? 0
+        completionButton.frame.origin.x += info["pointsMoved"] ?? 0
     }
     
-    func configure(title: String, completed: Bool, tag: Int, delegate: ToDoCellDelegate) {
+    func configure(title: String, isCompleted: Bool, tag: Int, delegate: ToDoCellDelegate) {
         toDoLabel.text = title
-        toggle.setOn(completed, animated: false)
+        completionButton.tag = isCompleted ? 1 : 0
+        setCompletionButtonImage()
         self.tag = tag
         self.delegate = delegate
     }
     
     func hideToggle(_ hide: Bool) {
-        toggle.isHidden = hide
+        completionButton.isHidden = hide
     }
 }
