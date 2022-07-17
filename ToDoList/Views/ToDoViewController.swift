@@ -79,12 +79,6 @@ class ToDoViewController: UIViewController {
                                      height: view.height-navigationBarHeight-tabBarHeight)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        toggleSort(toggle: false)
-        toggleTableViewEditing(toggle: false)
-    }
-    
     // MARK: - Methods
     
     private func configureNavigationItems() {
@@ -126,7 +120,7 @@ class ToDoViewController: UIViewController {
                 }
                 info = ["pointsMoved":containerView.width]
             }
-            NotificationCenter.default.post(name: Notification.Name ("updateToggleOrigin"), object: nil, userInfo: info)
+            NotificationCenter.default.post(name: Notification.Name ("updateButtonOrigin"), object: nil, userInfo: info)
             
         },
                        completion:
@@ -205,13 +199,17 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
         return viewModel.itemCount
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.height
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoCell.identifier, for: indexPath) as? ToDoCell else {
             return UITableViewCell()
         }
         
         cell.configure(title: viewModel.title(forItemAt: indexPath.row),
-                       completed: viewModel.completionStatus(forItemAt: indexPath.row),
+                       isCompleted: viewModel.completionStatus(forItemAt: indexPath.row),
                        tag: indexPath.row,
                        delegate: viewModel)
         return cell
@@ -239,7 +237,7 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = UpdateItemViewController(viewModel: viewModel,
                                           delegate: self,
                                           itemTitle:  viewModel.title(forItemAt: indexPath.row),
-                                          completed: viewModel.completionStatus(forItemAt: indexPath.row),
+                                          isCompleted: viewModel.completionStatus(forItemAt: indexPath.row),
                                           index: indexPath.row)
         
         navigationController?.pushViewController(vc, animated: true)

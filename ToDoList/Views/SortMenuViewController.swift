@@ -14,6 +14,7 @@ class SortMenuViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SortMenuCell.self, forCellReuseIdentifier: SortMenuCell.identifier)
+        tableView.isScrollEnabled = false
         return tableView
     }()
     

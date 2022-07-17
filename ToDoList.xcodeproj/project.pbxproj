@@ -14,7 +14,6 @@
 		214D1FE9288204EE00D49943 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 214D1FE7288204EE00D49943 /* LaunchScreen.storyboard */; };
 		214D1FF12882051700D49943 /* UpdateItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D1FF02882051700D49943 /* UpdateItemViewController.swift */; };
 		214D1FF32882052900D49943 /* ToDoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D1FF22882052900D49943 /* ToDoItemViewModel.swift */; };
-		214D1FF52882053900D49943 /* ToDoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D1FF42882053900D49943 /* ToDoItemModel.swift */; };
 		214D1FFA288205F200D49943 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D1FF9288205F200D49943 /* ToDoCell.swift */; };
 		214D1FFC288205FD00D49943 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D1FFB288205FD00D49943 /* Constants.swift */; };
 		214D1FFF2882061600D49943 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D1FFE2882061600D49943 /* Extensions.swift */; };
@@ -32,6 +31,11 @@
 		21D010D32883672F0001991E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D22883672F0001991E /* TabBarViewController.swift */; };
 		21D010D628836AB50001991E /* FocusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D528836AB50001991E /* FocusViewController.swift */; };
 		21D010D828836AF90001991E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D728836AF90001991E /* ProfileViewController.swift */; };
+		21D010DA2883C0B40001991E /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D92883C0B30001991E /* TextFieldCell.swift */; };
+		21D010DC2883C0D80001991E /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010DB2883C0D80001991E /* ToggleCell.swift */; };
+		21D010DE2883C2D70001991E /* UpdateItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010DD2883C2D70001991E /* UpdateItemCellViewModel.swift */; };
+		21D010E02883C3190001991E /* UpdateItemCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010DF2883C3190001991E /* UpdateItemCellModel.swift */; };
+		21D010E22883CA7B0001991E /* UpdateItemCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010E12883CA7B0001991E /* UpdateItemCellDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +48,6 @@
 		214D1FEA288204EE00D49943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		214D1FF02882051700D49943 /* UpdateItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateItemViewController.swift; sourceTree = "<group>"; };
 		214D1FF22882052900D49943 /* ToDoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemViewModel.swift; sourceTree = "<group>"; };
-		214D1FF42882053900D49943 /* ToDoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemModel.swift; sourceTree = "<group>"; };
 		214D1FF9288205F200D49943 /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		214D1FFB288205FD00D49943 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		214D1FFE2882061600D49943 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -62,6 +65,11 @@
 		21D010D22883672F0001991E /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		21D010D528836AB50001991E /* FocusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusViewController.swift; sourceTree = "<group>"; };
 		21D010D728836AF90001991E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		21D010D92883C0B30001991E /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		21D010DB2883C0D80001991E /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
+		21D010DD2883C2D70001991E /* UpdateItemCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateItemCellViewModel.swift; sourceTree = "<group>"; };
+		21D010DF2883C3190001991E /* UpdateItemCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateItemCellModel.swift; sourceTree = "<group>"; };
+		21D010E12883CA7B0001991E /* UpdateItemCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateItemCellDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +133,7 @@
 			children = (
 				214D1FF22882052900D49943 /* ToDoItemViewModel.swift */,
 				214D200B28826ABA00D49943 /* SortMenuViewModel.swift */,
+				21D010DD2883C2D70001991E /* UpdateItemCellViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -132,9 +141,9 @@
 		214D1FF82882056A00D49943 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				214D1FF42882053900D49943 /* ToDoItemModel.swift */,
 				214D200F288286DC00D49943 /* SortOptionModel.swift */,
 				214D20052882186900D49943 /* AlertModel.swift */,
+				21D010DF2883C3190001991E /* UpdateItemCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -157,6 +166,7 @@
 				214D20012882079900D49943 /* UpdateItemViewControllerDelegate.swift */,
 				214D200328820E9500D49943 /* ToDoCellDelegate.swift */,
 				214D200D288270DB00D49943 /* SortMenuDelegate.swift */,
+				21D010E12883CA7B0001991E /* UpdateItemCellDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -176,6 +186,8 @@
 			children = (
 				214D1FF9288205F200D49943 /* ToDoCell.swift */,
 				214D2009288263B700D49943 /* SortMenuCell.swift */,
+				21D010D92883C0B30001991E /* TextFieldCell.swift */,
+				21D010DB2883C0D80001991E /* ToggleCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -250,19 +262,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				214D1FF52882053900D49943 /* ToDoItemModel.swift in Sources */,
+				21D010DE2883C2D70001991E /* UpdateItemCellViewModel.swift in Sources */,
 				214D200A288263B700D49943 /* SortMenuCell.swift in Sources */,
 				214D1FFF2882061600D49943 /* Extensions.swift in Sources */,
 				214D1FF32882052900D49943 /* ToDoItemViewModel.swift in Sources */,
 				21D010D32883672F0001991E /* TabBarViewController.swift in Sources */,
 				214D20082882637200D49943 /* SortMenuViewController.swift in Sources */,
 				214D1FFA288205F200D49943 /* ToDoCell.swift in Sources */,
+				21D010E22883CA7B0001991E /* UpdateItemCellDelegate.swift in Sources */,
 				21D010CD288338730001991E /* ToDoCoreDataModel.xcdatamodeld in Sources */,
 				214D20062882186A00D49943 /* AlertModel.swift in Sources */,
 				21D010D628836AB50001991E /* FocusViewController.swift in Sources */,
 				21D010CF288343170001991E /* CoreDataKeys.swift in Sources */,
+				21D010DA2883C0B40001991E /* TextFieldCell.swift in Sources */,
 				214D1FE1288204EB00D49943 /* ToDoViewController.swift in Sources */,
 				214D1FDD288204EB00D49943 /* AppDelegate.swift in Sources */,
+				21D010DC2883C0D80001991E /* ToggleCell.swift in Sources */,
 				21D010D1288343E70001991E /* CoreDataErrors.swift in Sources */,
 				214D200E288270DB00D49943 /* SortMenuDelegate.swift in Sources */,
 				21D010D828836AF90001991E /* ProfileViewController.swift in Sources */,
@@ -271,6 +286,7 @@
 				214D1FF12882051700D49943 /* UpdateItemViewController.swift in Sources */,
 				214D200428820E9500D49943 /* ToDoCellDelegate.swift in Sources */,
 				214D1FDF288204EB00D49943 /* SceneDelegate.swift in Sources */,
+				21D010E02883C3190001991E /* UpdateItemCellModel.swift in Sources */,
 				214D200C28826ABA00D49943 /* SortMenuViewModel.swift in Sources */,
 				214D1FFC288205FD00D49943 /* Constants.swift in Sources */,
 			);
