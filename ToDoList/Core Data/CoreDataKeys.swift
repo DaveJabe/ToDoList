@@ -8,7 +8,8 @@
 import Foundation
 
 enum CoreDataKey {
+    static let nameForContainer = "ToDoCoreDataModel"
     static let entityName = "ToDoItem"
     static let titleKey = "title"
-    static let completedKey = "completed"
+    static let isCompletedKey = "isCompleted"
 }

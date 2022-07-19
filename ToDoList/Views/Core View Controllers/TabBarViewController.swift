@@ -17,7 +17,7 @@ class TabBarViewController: UITabBarController {
     
     private func setUpViewControllers() {
         
-        let fvc = FocusViewController()
+        let fvc = APIViewController()
         fvc.title = "Focus"
         
         let tdvc = ToDoViewController()
