@@ -109,7 +109,7 @@ class ToDoItemViewModel {
     }
 }
 
-    // MARK: - Delegate
+    // MARK: - Delegates
 
 extension ToDoItemViewModel: ToDoCellDelegate {
     func toDoItemWasToggled(on: Bool, index: Int) {

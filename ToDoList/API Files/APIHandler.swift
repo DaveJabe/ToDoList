@@ -8,35 +8,36 @@
 import Foundation
 
 class APIHandler {
+    
     static let shared = APIHandler()
-    
-    private init() {}
-    
-    func getDataFromAPI(completion: @escaping ([APIToDoModel]) -> Void) {
         
-        // 1. Create URL
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/todos") else {
+    let session: URLSession
+        
+    init(session: URLSession = .shared) {
+        self.session = session
+    }    
+    
+    func getDataFromAPI<T: Codable>(urlString: String, completion: @escaping (Result<T, Error>) -> Void) {
+                
+        guard let url = URL(string: urlString) else {
             print("Failed to create URL")
             return
         }
         
-        // 2. Create URLSessionDataTask (parse data, check response, handle errors)
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
             guard let data = data, error == nil, (response as? HTTPURLResponse)?.statusCode == 200 else {
                 print("Error fetching data from API... status code: \(String(describing: (response as? HTTPURLResponse)?.statusCode))")
                 return
             }
-            
             do {
-                let results = try JSONDecoder().decode([APIToDoModel].self, from: data)
-                completion(results)
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(decodedData))
             }
-            catch {
-                print("Could not decode data into APIToDoModel array")
+            catch(let decodingError) {
+                completion(.failure(decodingError))
             }
         }
-        
-        // 3. Resume task
         task.resume()
     }
 }
