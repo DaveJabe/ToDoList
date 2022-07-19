@@ -8,8 +8,10 @@
 import Foundation
 
 enum CoreDataError: String, Error {
-    case failedToGetAppDelegate = "Failed to downcast App Delegate"
-    case failedToFetchData = "Failed to fetch data"
+    case failedToLoadPersistentStores = "Failed to load persistent stores"
+    case failedToInsertEntity = "Failed to insert new entity"
+    case failedToUpdateEntity = "Failed to update entity"
+    case failedToFetchData = "Failed to fetch data... returning empty array"
     case failedToSaveData = "Failed to save data"
     case failedToCreateEntityDescription = "Failed to create entity description"
     case errorGettingTitle = "Error getting title for ToDoItem"

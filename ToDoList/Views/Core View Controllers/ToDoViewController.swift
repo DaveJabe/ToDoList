@@ -19,6 +19,16 @@ class ToDoViewController: UIViewController {
         return tableView
     }()
     
+    private let noItemsLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.font = Constants.semibold
+        label.textAlignment = .center
+        label.textColor = .secondaryLabel
+        label.text = "No To Do Items"
+        return label
+    }()
+    
     private let editButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.image = UIImage(systemName: "tablecells.badge.ellipsis")
@@ -55,10 +65,12 @@ class ToDoViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubviews(tableView, containerView)
+        tableView.addSubview(noItemsLabel)
         
         tableView.delegate = self
         tableView.dataSource = self
         
+        refreshData()
         configureNavigationItems()
     }
     
@@ -77,9 +89,17 @@ class ToDoViewController: UIViewController {
                                      y: navigationController?.navigationBar.bottom ?? 0,
                                      width: view.width/3,
                                      height: view.height-navigationBarHeight-tabBarHeight)
+        
+        noItemsLabel.frame = tableView.bounds
+        noItemsLabel.center.y = tableView.top + Constants.height
     }
     
     // MARK: - Methods
+    
+    private func refreshData() {
+        tableView.reloadData()
+        noItemsLabel.isHidden = !viewModel.isEmpty()
+    }
     
     private func configureNavigationItems() {
         navigationItem.rightBarButtonItem = editButton
@@ -121,7 +141,6 @@ class ToDoViewController: UIViewController {
                 info = ["pointsMoved":containerView.width]
             }
             NotificationCenter.default.post(name: Notification.Name ("updateButtonOrigin"), object: nil, userInfo: info)
-            
         },
                        completion:
                         
@@ -166,7 +185,7 @@ class ToDoViewController: UIViewController {
             
             self?.viewModel.addItem(text) { success in
                 if success {
-                    self?.tableView.reloadData()
+                    self?.refreshData()
                 }
                 else {
                     self?.presentAlert(alert: Alert.emptyTextAlert, actions: [AlertAction.ok])
@@ -209,7 +228,7 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.configure(title: viewModel.title(forItemAt: indexPath.row),
-                       isCompleted: viewModel.completionStatus(forItemAt: indexPath.row),
+                       isCompleted: viewModel.isCompleted(itemAt: indexPath.row),
                        tag: indexPath.row,
                        delegate: viewModel)
         return cell
@@ -217,8 +236,8 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel.removeItem(at: indexPath.row) {
-                tableView.reloadData()
+            viewModel.removeItem(at: indexPath.row) { [weak self] in
+                self?.refreshData()
             }
         }
     }
@@ -237,7 +256,7 @@ extension ToDoViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = UpdateItemViewController(viewModel: viewModel,
                                           delegate: self,
                                           itemTitle:  viewModel.title(forItemAt: indexPath.row),
-                                          isCompleted: viewModel.completionStatus(forItemAt: indexPath.row),
+                                          isCompleted: viewModel.isCompleted(itemAt: indexPath.row),
                                           index: indexPath.row)
         
         navigationController?.pushViewController(vc, animated: true)

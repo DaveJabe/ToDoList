@@ -12,47 +12,20 @@ class ToDoItemViewModel {
     
     // MARK: - Properties
     
-    private var models: [NSManagedObject] = []
+    private var models: [NSManagedObject]
+    
+    private let coreDataStack = CoreDataStack()
     
     var itemCount: Int {
         return models.count
     }
     
     init() {
-        fetchData(orderBy: SortOption.forward.option)
+        models = coreDataStack.fetchData(orderBy: SortOption.forward.option)
     }
     
     // MARK: - Private Methods
-    
-    private func fetchData(orderBy sortOption: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            print(CoreDataError.failedToGetAppDelegate.rawValue)
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let sortDescriptor = getSortDescriptor(sortOption: sortOption)
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: CoreDataKey.entityName)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        do {
-            models = try managedContext.fetch(fetchRequest)
-        }
-        catch {
-            print(CoreDataError.failedToFetchData.rawValue)
-        }
-    }
-    
-    private func saveData() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            print(CoreDataError.failedToGetAppDelegate.rawValue)
-            return
-        }
-        appDelegate.saveContext()
-    }
-    
+
     private func isValidTitle(_ string: String) -> Bool {
         return !string.isEmpty
     }
@@ -61,22 +34,11 @@ class ToDoItemViewModel {
         models.insert(item, at: index)
     }
     
-    private func getSortDescriptor(sortOption: String) -> NSSortDescriptor {
-        switch sortOption {
-        case SortOption.forward.option:
-            return NSSortDescriptor(key: CoreDataKey.titleKey, ascending: true)
-        case SortOption.reverse.option:
-            return NSSortDescriptor(key: CoreDataKey.titleKey, ascending: false)
-        case SortOption.completed.option:
-            return NSSortDescriptor(key: CoreDataKey.completedKey, ascending: false)
-        case SortOption.incomplete.option:
-            return NSSortDescriptor(key: CoreDataKey.completedKey, ascending: true)
-        default:
-            return NSSortDescriptor()
-        }
-    }
-    
     // MARK: - Methods
+    
+    func isEmpty() -> Bool {
+        return models.isEmpty
+    }
     
     func item(at index: Int) -> NSManagedObject {
         return models[index]
@@ -84,15 +46,15 @@ class ToDoItemViewModel {
     
     func title(forItemAt index: Int) -> String {
         guard let title = models[index].value(forKeyPath: CoreDataKey.titleKey) as? String else {
-            print(CoreDataError.errorGettingTitle.rawValue)
+            print(CoreDataError.errorGettingTitle.localizedDescription)
             return ""
         }
         return title
     }
     
-    func completionStatus(forItemAt index: Int) -> Bool {
-        guard let completed = models[index].value(forKeyPath: CoreDataKey.completedKey) as? Bool else {
-            print(CoreDataError.errorGettingCompleted.rawValue)
+    func isCompleted(itemAt index: Int) -> Bool {
+        guard let completed = models[index].value(forKeyPath: CoreDataKey.isCompletedKey) as? Bool else {
+            print(CoreDataError.errorGettingCompleted.localizedDescription)
             return false
         }
         return completed
@@ -100,25 +62,13 @@ class ToDoItemViewModel {
     
     func addItem(_ title: String, completion: (Bool) -> Void) {
         if isValidTitle(title) {
-            
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                print(CoreDataError.failedToGetAppDelegate.rawValue)
+
+            guard let item = coreDataStack.insertNewEntity(title: title, isCompleted: false) else {
+                print(CoreDataError.failedToInsertEntity.localizedDescription)
                 return
             }
-            
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            guard let entityDescription = NSEntityDescription.entity(forEntityName: CoreDataKey.entityName, in: managedContext) else {
-                print(CoreDataError.failedToCreateEntityDescription.rawValue)
-                return
-            }
-            
-            let item = NSManagedObject(entity: entityDescription, insertInto: managedContext)
-            item.setValue(title, forKeyPath: CoreDataKey.titleKey)
             
             models.append(item)
-            saveData()
-            
             completion(true)
         }
         else {
@@ -127,13 +77,10 @@ class ToDoItemViewModel {
     }
     
     func removeItem(at index: Int, completion: (() -> Void)?) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            print(CoreDataError.failedToGetAppDelegate.rawValue)
-            return
-        }
         let itemToDelete = models.remove(at: index)
-        appDelegate.persistentContainer.viewContext.delete(itemToDelete)
-        saveData()
+        
+        coreDataStack.removeEntity(itemToDelete)
+        
         if let completion = completion {
             completion()
         }
@@ -147,9 +94,9 @@ class ToDoItemViewModel {
     
     func updateItem(title: String, completed: Bool, at index: Int, completion: (Bool) -> Void) {
         if isValidTitle(title) {
-            models[index].setValue(title, forKeyPath: CoreDataKey.titleKey)
-            models[index].setValue(completed, forKeyPath: CoreDataKey.completedKey)
-            saveData()
+            
+            coreDataStack.updateEntity(models[index], newTitle: title, newIsCompleted: completed)
+            
             completion(true)
         }
         else {
@@ -158,7 +105,7 @@ class ToDoItemViewModel {
     }
     
     func sortItems(by sortOption: String) {
-        fetchData(orderBy: sortOption)
+        models = coreDataStack.fetchData(orderBy: sortOption)
     }
 }
 
@@ -166,7 +113,7 @@ class ToDoItemViewModel {
 
 extension ToDoItemViewModel: ToDoCellDelegate {
     func toDoItemWasToggled(on: Bool, index: Int) {
-        models[index].setValue(on, forKeyPath: CoreDataKey.completedKey)
-        saveData()
+        models[index].setValue(on, forKeyPath: CoreDataKey.isCompletedKey)
+        coreDataStack.saveContext()
     }
 }
