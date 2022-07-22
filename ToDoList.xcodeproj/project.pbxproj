@@ -29,7 +29,6 @@
 		21D010CF288343170001991E /* CoreDataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010CE288343170001991E /* CoreDataKeys.swift */; };
 		21D010D1288343E70001991E /* CoreDataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D0288343E70001991E /* CoreDataErrors.swift */; };
 		21D010D32883672F0001991E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D22883672F0001991E /* TabBarViewController.swift */; };
-		21D010D628836AB50001991E /* APIToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D528836AB50001991E /* APIToDoViewController.swift */; };
 		21D010D828836AF90001991E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D728836AF90001991E /* ProfileViewController.swift */; };
 		21D010DA2883C0B40001991E /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D92883C0B30001991E /* TextFieldCell.swift */; };
 		21D010DC2883C0D80001991E /* ToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010DB2883C0D80001991E /* ToggleCell.swift */; };
@@ -38,18 +37,7 @@
 		21D010E22883CA7B0001991E /* UpdateItemCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010E12883CA7B0001991E /* UpdateItemCellDelegate.swift */; };
 		21F946B42885A3060087BE64 /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946B32885A3060087BE64 /* CoreDataStackTests.swift */; };
 		21F946BB2885B9B00087BE64 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946BA2885B9B00087BE64 /* CoreDataStack.swift */; };
-		21F946C12885FAB40087BE64 /* APIToDoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946C02885FAB40087BE64 /* APIToDoViewModel.swift */; };
-		21F946C32885FD870087BE64 /* APIToDoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946C22885FD870087BE64 /* APIToDoItemModel.swift */; };
-		21F946C5288609C00087BE64 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946C4288609C00087BE64 /* APIHandler.swift */; };
 		21F946C9288613AE0087BE64 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946C628860E190087BE64 /* TestCoreDataStack.swift */; };
-		21F946CB2887105E0087BE64 /* DecodableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946CA2887105E0087BE64 /* DecodableArray.swift */; };
-		21F946CD288710ED0087BE64 /* APICommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946CC288710ED0087BE64 /* APICommentModel.swift */; };
-		21F946CF288715770087BE64 /* APICommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946CE288715770087BE64 /* APICommentViewModel.swift */; };
-		21F946D1288716000087BE64 /* APICommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946D0288716000087BE64 /* APICommentViewController.swift */; };
-		21F946D3288716520087BE64 /* APICommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946D2288716520087BE64 /* APICommentCell.swift */; };
-		21F946D9288722A90087BE64 /* APIToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946D8288722A90087BE64 /* APIToDoCell.swift */; };
-		21F946DB288742BE0087BE64 /* APIHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946DA288742BE0087BE64 /* APIHandlerTests.swift */; };
-		21F946DD28874E400087BE64 /* APIToDoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F946DC28874E400087BE64 /* APIToDoViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +75,6 @@
 		21D010CE288343170001991E /* CoreDataKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataKeys.swift; sourceTree = "<group>"; };
 		21D010D0288343E70001991E /* CoreDataErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataErrors.swift; sourceTree = "<group>"; };
 		21D010D22883672F0001991E /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		21D010D528836AB50001991E /* APIToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIToDoViewController.swift; sourceTree = "<group>"; };
 		21D010D728836AF90001991E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		21D010D92883C0B30001991E /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		21D010DB2883C0D80001991E /* ToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCell.swift; sourceTree = "<group>"; };
@@ -97,18 +84,7 @@
 		21F946B12885A3060087BE64 /* ToDoListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F946B32885A3060087BE64 /* CoreDataStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
 		21F946BA2885B9B00087BE64 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		21F946C02885FAB40087BE64 /* APIToDoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIToDoViewModel.swift; sourceTree = "<group>"; };
-		21F946C22885FD870087BE64 /* APIToDoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIToDoItemModel.swift; sourceTree = "<group>"; };
-		21F946C4288609C00087BE64 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		21F946C628860E190087BE64 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
-		21F946CA2887105E0087BE64 /* DecodableArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableArray.swift; sourceTree = "<group>"; };
-		21F946CC288710ED0087BE64 /* APICommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentModel.swift; sourceTree = "<group>"; };
-		21F946CE288715770087BE64 /* APICommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentViewModel.swift; sourceTree = "<group>"; };
-		21F946D0288716000087BE64 /* APICommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentViewController.swift; sourceTree = "<group>"; };
-		21F946D2288716520087BE64 /* APICommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentCell.swift; sourceTree = "<group>"; };
-		21F946D8288722A90087BE64 /* APIToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIToDoCell.swift; sourceTree = "<group>"; };
-		21F946DA288742BE0087BE64 /* APIHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandlerTests.swift; sourceTree = "<group>"; };
-		21F946DC28874E400087BE64 /* APIToDoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIToDoViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +126,6 @@
 		214D1FDB288204EB00D49943 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				21F946D42887217B0087BE64 /* API Files */,
 				21D010CA2882F9200001991E /* Core Data */,
 				214D1FFD2882060600D49943 /* Resources */,
 				214D20002882078A00D49943 /* Delegates */,
@@ -254,43 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				21F946B32885A3060087BE64 /* CoreDataStackTests.swift */,
-				21F946DA288742BE0087BE64 /* APIHandlerTests.swift */,
-				21F946DC28874E400087BE64 /* APIToDoViewModelTests.swift */,
 			);
 			path = ToDoListTests;
-			sourceTree = "<group>";
-		};
-		21F946D42887217B0087BE64 /* API Files */ = {
-			isa = PBXGroup;
-			children = (
-				21F946C4288609C00087BE64 /* APIHandler.swift */,
-				21F946CA2887105E0087BE64 /* DecodableArray.swift */,
-				21F946D6288721EA0087BE64 /* API ToDo Files */,
-				21F946D7288721FF0087BE64 /* API Comment Files */,
-			);
-			path = "API Files";
-			sourceTree = "<group>";
-		};
-		21F946D6288721EA0087BE64 /* API ToDo Files */ = {
-			isa = PBXGroup;
-			children = (
-				21F946C22885FD870087BE64 /* APIToDoItemModel.swift */,
-				21D010D528836AB50001991E /* APIToDoViewController.swift */,
-				21F946D8288722A90087BE64 /* APIToDoCell.swift */,
-				21F946C02885FAB40087BE64 /* APIToDoViewModel.swift */,
-			);
-			path = "API ToDo Files";
-			sourceTree = "<group>";
-		};
-		21F946D7288721FF0087BE64 /* API Comment Files */ = {
-			isa = PBXGroup;
-			children = (
-				21F946CC288710ED0087BE64 /* APICommentModel.swift */,
-				21F946D0288716000087BE64 /* APICommentViewController.swift */,
-				21F946D2288716520087BE64 /* APICommentCell.swift */,
-				21F946CE288715770087BE64 /* APICommentViewModel.swift */,
-			);
-			path = "API Comment Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,22 +337,15 @@
 				214D200A288263B700D49943 /* SortMenuCell.swift in Sources */,
 				214D1FFF2882061600D49943 /* Extensions.swift in Sources */,
 				214D1FF32882052900D49943 /* ToDoItemViewModel.swift in Sources */,
-				21F946C32885FD870087BE64 /* APIToDoItemModel.swift in Sources */,
-				21F946D1288716000087BE64 /* APICommentViewController.swift in Sources */,
 				21D010D32883672F0001991E /* TabBarViewController.swift in Sources */,
 				214D20082882637200D49943 /* SortMenuViewController.swift in Sources */,
 				214D1FFA288205F200D49943 /* ToDoCell.swift in Sources */,
 				21D010E22883CA7B0001991E /* UpdateItemCellDelegate.swift in Sources */,
 				21D010CD288338730001991E /* ToDoCoreDataModel.xcdatamodeld in Sources */,
 				214D20062882186A00D49943 /* AlertModel.swift in Sources */,
-				21F946D9288722A90087BE64 /* APIToDoCell.swift in Sources */,
 				21F946C9288613AE0087BE64 /* TestCoreDataStack.swift in Sources */,
-				21D010D628836AB50001991E /* APIToDoViewController.swift in Sources */,
 				21D010CF288343170001991E /* CoreDataKeys.swift in Sources */,
-				21F946CB2887105E0087BE64 /* DecodableArray.swift in Sources */,
-				21F946C12885FAB40087BE64 /* APIToDoViewModel.swift in Sources */,
 				21D010DA2883C0B40001991E /* TextFieldCell.swift in Sources */,
-				21F946D3288716520087BE64 /* APICommentCell.swift in Sources */,
 				214D1FE1288204EB00D49943 /* ToDoViewController.swift in Sources */,
 				214D1FDD288204EB00D49943 /* AppDelegate.swift in Sources */,
 				21D010DC2883C0D80001991E /* ToggleCell.swift in Sources */,
@@ -424,13 +357,10 @@
 				214D1FF12882051700D49943 /* UpdateItemViewController.swift in Sources */,
 				214D200428820E9500D49943 /* ToDoCellDelegate.swift in Sources */,
 				214D1FDF288204EB00D49943 /* SceneDelegate.swift in Sources */,
-				21F946CD288710ED0087BE64 /* APICommentModel.swift in Sources */,
-				21F946CF288715770087BE64 /* APICommentViewModel.swift in Sources */,
 				21D010E02883C3190001991E /* UpdateItemCellModel.swift in Sources */,
 				214D200C28826ABA00D49943 /* SortMenuViewModel.swift in Sources */,
 				21F946BB2885B9B00087BE64 /* CoreDataStack.swift in Sources */,
 				214D1FFC288205FD00D49943 /* Constants.swift in Sources */,
-				21F946C5288609C00087BE64 /* APIHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,9 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21F946DD28874E400087BE64 /* APIToDoViewModelTests.swift in Sources */,
 				21F946B42885A3060087BE64 /* CoreDataStackTests.swift in Sources */,
-				21F946DB288742BE0087BE64 /* APIHandlerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

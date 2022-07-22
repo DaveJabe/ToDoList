@@ -31,21 +31,21 @@ class ToDoViewController: UIViewController {
     
     private let editButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
-        button.image = UIImage(systemName: "tablecells.badge.ellipsis")
+        button.image = UIImage(systemName: SFSymbol.editTable)
         button.style = .plain
         return button
     }()
     
     private let addButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
-        button.image = UIImage(systemName: "plus")
+        button.image = UIImage(systemName: SFSymbol.plus)
         button.style = .plain
         return button
     }()
     
     private let sortButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
-        button.image = UIImage(systemName: "arrow.up.arrow.down")
+        button.image = UIImage(systemName: SFSymbol.sort)
         button.style = .plain
         return button
     }()
@@ -159,7 +159,7 @@ class ToDoViewController: UIViewController {
         }
         else {
             tableView.isEditing = false
-            editButton.image = UIImage(systemName: "tablecells.badge.ellipsis")
+            editButton.image = UIImage(systemName: SFSymbol.editTable)
             editButton.title = nil
             navigationItem.setRightBarButtonItems([editButton], animated: false)
             navigationItem.leftBarButtonItem = sortButton
