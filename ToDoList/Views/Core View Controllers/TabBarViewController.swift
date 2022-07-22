@@ -17,7 +17,7 @@ class TabBarViewController: UITabBarController {
     
     private func setUpViewControllers() {
         
-        let fvc = APIToDoViewController()
+        let fvc = UIViewController()
         fvc.title = "API Stuff"
         
         let tdvc = ToDoViewController()
@@ -31,13 +31,13 @@ class TabBarViewController: UITabBarController {
         let nav3 = UINavigationController(rootViewController: pvc)
         
         nav1.tabBarItem = UITabBarItem(title: nil,
-                                       image: UIImage(systemName: "app.connected.to.app.below.fill"),
+                                       image: UIImage(systemName: SFSymbol.APITab),
                                        tag: 1)
         nav2.tabBarItem = UITabBarItem(title: nil,
-                                       image: UIImage(systemName: "house"),
+                                       image: UIImage(systemName: SFSymbol.homeTab),
                                        tag: 2)
         nav3.tabBarItem = UITabBarItem(title: nil,
-                                       image: UIImage(systemName: "person.fill"),
+                                       image: UIImage(systemName: SFSymbol.profileTab),
                                        tag: 3)
         
         setViewControllers([nav1, nav2, nav3], animated: true)

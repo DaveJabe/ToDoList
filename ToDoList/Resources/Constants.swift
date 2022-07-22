@@ -20,3 +20,19 @@ struct Constants {
     static let smallPadding: CGFloat = 15
 }
 
+struct URLString {
+    static let todos = "https://jsonplaceholder.typicode.com/todos/"
+    static let comments = "https://jsonplaceholder.typicode.com/comments"
+}
+
+struct SFSymbol {
+    static let incomplete = "circle"
+    static let complete = "circle.circle.fill"
+    static let homeTab = "house"
+    static let APITab = "app.connected.to.app.below.fill"
+    static let profileTab = "person.fill"
+    static let editTable = "tablecells.badge.ellipsis"
+    static let plus = "plus"
+    static let sort = "arrow.up.arrow.down"
+}
+

@@ -26,7 +26,7 @@ class ToDoCell: UITableViewCell {
     
     private let completionButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.setImage(UIImage(systemName: SFSymbol.incomplete), for: .normal)
         button.tag = 0
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -75,14 +75,18 @@ class ToDoCell: UITableViewCell {
         tag = 0
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Methods
     
     private func setCompletionButtonImage() {
         switch completionButton.tag {
         case 0:
-            completionButton.setImage(UIImage(systemName: "circle"), for: .normal)
+            completionButton.setImage(UIImage(systemName: SFSymbol.incomplete), for: .normal)
         case 1:
-            completionButton.setImage(UIImage(systemName: "circle.circle.fill"), for: .normal)
+            completionButton.setImage(UIImage(systemName: SFSymbol.complete), for: .normal)
         default:
             print("error!")
         }

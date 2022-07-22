@@ -25,8 +25,11 @@ struct Alert {
                                          style: .alert)
     
     static let emptyTextAlert = AlertModel(title: "Could not add new item",
-                                           message: "Please enter 1 or more characters",
+                                           message: "Please enter 1 or more characters.",
                                            style: .alert)
+    static let errorFetchingData = AlertModel(title: "Sorry, there was an error fetching data",
+                                              message: "Please try again later.",
+                                              style: .alert)
 }
 
 struct AlertAction {
