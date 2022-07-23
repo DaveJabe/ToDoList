@@ -25,7 +25,7 @@ class ToggleCell: UITableViewCell {
         return toggle
     }()
     
-    weak var delegate: UpdateItemCellDelegate?
+    private weak var delegate: UpdateItemCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,13 +50,7 @@ class ToggleCell: UITableViewCell {
                                      toggle.layoutMarginsGuide.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.padding),
                                      toggle.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)])
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = nil
-        toggle.isOn = false
-    }
-    
+
     func configure(title: String, isCompleted: Bool, delegate: UpdateItemCellDelegate) {
         titleLabel.text = title
         toggle.isOn = isCompleted

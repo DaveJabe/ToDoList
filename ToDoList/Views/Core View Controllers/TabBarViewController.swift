@@ -17,8 +17,8 @@ class TabBarViewController: UITabBarController {
     
     private func setUpViewControllers() {
         
-        let fvc = UIViewController()
-        fvc.title = "API Stuff"
+        let fvc = FocusViewController()
+        fvc.title = "Focus"
         
         let tdvc = ToDoViewController()
         tdvc.title = "Today's Tasks"
@@ -31,7 +31,7 @@ class TabBarViewController: UITabBarController {
         let nav3 = UINavigationController(rootViewController: pvc)
         
         nav1.tabBarItem = UITabBarItem(title: nil,
-                                       image: UIImage(systemName: SFSymbol.APITab),
+                                       image: UIImage(systemName: SFSymbol.focusTab),
                                        tag: 1)
         nav2.tabBarItem = UITabBarItem(title: nil,
                                        image: UIImage(systemName: SFSymbol.homeTab),

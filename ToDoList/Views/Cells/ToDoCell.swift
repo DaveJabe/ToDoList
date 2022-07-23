@@ -68,13 +68,6 @@ class ToDoCell: UITableViewCell {
                                      completionButton.layoutMarginsGuide.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        toDoLabel.text = ""
-        completionButton.setImage(nil, for: .normal)
-        tag = 0
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
