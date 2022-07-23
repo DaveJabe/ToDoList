@@ -25,6 +25,9 @@
 		214D200C28826ABA00D49943 /* SortMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D200B28826ABA00D49943 /* SortMenuViewModel.swift */; };
 		214D200E288270DB00D49943 /* SortMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D200D288270DB00D49943 /* SortMenuDelegate.swift */; };
 		214D2010288286DC00D49943 /* SortOptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D200F288286DC00D49943 /* SortOptionModel.swift */; };
+		21B824BA288B360C00786948 /* FocusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B824B9288B360B00786948 /* FocusViewController.swift */; };
+		21B824BC288B404C00786948 /* FocusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B824BB288B404C00786948 /* FocusViewModel.swift */; };
+		21B824BE288B503100786948 /* DynamicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B824BD288B503100786948 /* DynamicModel.swift */; };
 		21D010CD288338730001991E /* ToDoCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21D010CB288338730001991E /* ToDoCoreDataModel.xcdatamodeld */; };
 		21D010CF288343170001991E /* CoreDataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010CE288343170001991E /* CoreDataKeys.swift */; };
 		21D010D1288343E70001991E /* CoreDataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D0288343E70001991E /* CoreDataErrors.swift */; };
@@ -71,6 +74,9 @@
 		214D200B28826ABA00D49943 /* SortMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMenuViewModel.swift; sourceTree = "<group>"; };
 		214D200D288270DB00D49943 /* SortMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMenuDelegate.swift; sourceTree = "<group>"; };
 		214D200F288286DC00D49943 /* SortOptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionModel.swift; sourceTree = "<group>"; };
+		21B824B9288B360B00786948 /* FocusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusViewController.swift; sourceTree = "<group>"; };
+		21B824BB288B404C00786948 /* FocusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusViewModel.swift; sourceTree = "<group>"; };
+		21B824BD288B503100786948 /* DynamicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicModel.swift; sourceTree = "<group>"; };
 		21D010CC288338730001991E /* ToDoCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		21D010CE288343170001991E /* CoreDataKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataKeys.swift; sourceTree = "<group>"; };
 		21D010D0288343E70001991E /* CoreDataErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataErrors.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 				214D1FF22882052900D49943 /* ToDoItemViewModel.swift */,
 				214D200B28826ABA00D49943 /* SortMenuViewModel.swift */,
 				21D010DD2883C2D70001991E /* UpdateItemCellViewModel.swift */,
+				21B824BB288B404C00786948 /* FocusViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -165,6 +172,7 @@
 				214D200F288286DC00D49943 /* SortOptionModel.swift */,
 				214D20052882186900D49943 /* AlertModel.swift */,
 				21D010DF2883C3190001991E /* UpdateItemCellModel.swift */,
+				21B824BD288B503100786948 /* DynamicModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +229,7 @@
 				21D010D22883672F0001991E /* TabBarViewController.swift */,
 				214D1FE0288204EB00D49943 /* ToDoViewController.swift */,
 				21D010D728836AF90001991E /* ProfileViewController.swift */,
+				21B824B9288B360B00786948 /* FocusViewController.swift */,
 			);
 			path = "Core View Controllers";
 			sourceTree = "<group>";
@@ -349,6 +358,9 @@
 				214D1FE1288204EB00D49943 /* ToDoViewController.swift in Sources */,
 				214D1FDD288204EB00D49943 /* AppDelegate.swift in Sources */,
 				21D010DC2883C0D80001991E /* ToggleCell.swift in Sources */,
+				21B824BA288B360C00786948 /* FocusViewController.swift in Sources */,
+				21B824BE288B503100786948 /* DynamicModel.swift in Sources */,
+				21B824BC288B404C00786948 /* FocusViewModel.swift in Sources */,
 				21D010D1288343E70001991E /* CoreDataErrors.swift in Sources */,
 				214D200E288270DB00D49943 /* SortMenuDelegate.swift in Sources */,
 				21D010D828836AF90001991E /* ProfileViewController.swift in Sources */,

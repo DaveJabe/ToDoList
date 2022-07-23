@@ -27,9 +27,10 @@ struct Alert {
     static let emptyTextAlert = AlertModel(title: "Could not add new item",
                                            message: "Please enter 1 or more characters.",
                                            style: .alert)
-    static let errorFetchingData = AlertModel(title: "Sorry, there was an error fetching data",
-                                              message: "Please try again later.",
-                                              style: .alert)
+    
+    static let areYouSure = AlertModel(title: "Are you sure you would like to end this timer?",
+                                       message: nil,
+                                       style: .actionSheet)
 }
 
 struct AlertAction {
@@ -38,7 +39,7 @@ struct AlertAction {
                                      handler: nil)
     
     static let cancel = AlertActionModel(title: "Cancel",
-                                         style: .destructive,
+                                         style: .default,
                                          handler: nil)
 }
 

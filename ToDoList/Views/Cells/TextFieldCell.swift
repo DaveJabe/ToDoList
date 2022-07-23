@@ -27,7 +27,7 @@ class TextFieldCell: UITableViewCell {
         return textField
     }()
     
-    weak var delegate: UpdateItemCellDelegate?
+    private weak var delegate: UpdateItemCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -51,12 +51,6 @@ class TextFieldCell: UITableViewCell {
                                      
                                      textField.layoutMarginsGuide.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.padding),
                                      textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)])
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = nil
-        textField.text = nil
     }
     
     func configure(title: String, textFieldText: String, delegate: UpdateItemCellDelegate) {
