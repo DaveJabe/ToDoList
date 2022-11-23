@@ -28,6 +28,7 @@
 		21B824BA288B360C00786948 /* FocusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B824B9288B360B00786948 /* FocusViewController.swift */; };
 		21B824BC288B404C00786948 /* FocusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B824BB288B404C00786948 /* FocusViewModel.swift */; };
 		21B824BE288B503100786948 /* DynamicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B824BD288B503100786948 /* DynamicModel.swift */; };
+		21B824C0288C86DB00786948 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B824BF288C86DB00786948 /* UserDefault.swift */; };
 		21D010CD288338730001991E /* ToDoCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21D010CB288338730001991E /* ToDoCoreDataModel.xcdatamodeld */; };
 		21D010CF288343170001991E /* CoreDataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010CE288343170001991E /* CoreDataKeys.swift */; };
 		21D010D1288343E70001991E /* CoreDataErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D010D0288343E70001991E /* CoreDataErrors.swift */; };
@@ -77,6 +78,7 @@
 		21B824B9288B360B00786948 /* FocusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusViewController.swift; sourceTree = "<group>"; };
 		21B824BB288B404C00786948 /* FocusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusViewModel.swift; sourceTree = "<group>"; };
 		21B824BD288B503100786948 /* DynamicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicModel.swift; sourceTree = "<group>"; };
+		21B824BF288C86DB00786948 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		21D010CC288338730001991E /* ToDoCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		21D010CE288343170001991E /* CoreDataKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataKeys.swift; sourceTree = "<group>"; };
 		21D010D0288343E70001991E /* CoreDataErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataErrors.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				214D1FDC288204EB00D49943 /* AppDelegate.swift */,
 				214D1FDE288204EB00D49943 /* SceneDelegate.swift */,
 				214D1FFB288205FD00D49943 /* Constants.swift */,
+				21B824BF288C86DB00786948 /* UserDefault.swift */,
 				214D1FFE2882061600D49943 /* Extensions.swift */,
 				214D1FE5288204EE00D49943 /* Assets.xcassets */,
 			);
@@ -358,6 +361,7 @@
 				214D1FE1288204EB00D49943 /* ToDoViewController.swift in Sources */,
 				214D1FDD288204EB00D49943 /* AppDelegate.swift in Sources */,
 				21D010DC2883C0D80001991E /* ToggleCell.swift in Sources */,
+				21B824C0288C86DB00786948 /* UserDefault.swift in Sources */,
 				21B824BA288B360C00786948 /* FocusViewController.swift in Sources */,
 				21B824BE288B503100786948 /* DynamicModel.swift in Sources */,
 				21B824BC288B404C00786948 /* FocusViewModel.swift in Sources */,

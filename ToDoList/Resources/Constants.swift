@@ -30,5 +30,6 @@ struct SFSymbol {
     static let editTable = "tablecells.badge.ellipsis"
     static let plus = "plus"
     static let sort = "arrow.up.arrow.down"
+    static let pomodoroComplete = "checkmark.diamond"
 }
 

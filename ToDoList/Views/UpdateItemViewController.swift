@@ -89,7 +89,7 @@ class UpdateItemViewController: UIViewController {
                 navigationController?.popViewController(animated: true)
             }
             else {
-                presentAlert(alert: Alert.emptyTextAlert, actions: [AlertAction.ok])
+                presentAlert(alert: Alert.emptyTextAlert, actions: AlertAction.ok)
             }
         }
     }
