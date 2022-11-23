@@ -7,13 +7,32 @@
 
 import UIKit
 
-    // MARK: - UIView
+// MARK: - UIView
 
 extension UIView {
     func addSubviews(_ subviews: UIView...) {
         for subview in subviews {
             addSubview(subview)
         }
+    }
+    
+    func addShadow(color: CGColor = UIColor.black.cgColor,
+                   radius: CGFloat = 2.5,
+                   opacity: Float = 0.6,
+                   offset: CGSize = CGSize(width: 0.5, height: 1.5),
+                   masksToBounds: Bool = false
+    ) {
+        // Set the color of the shadow layer
+        layer.shadowColor = color
+        // Set the radius of the shadow layer
+        layer.shadowRadius = radius
+        // Set the opacity of the shadow layer (1 = fully opaque, 0 = fully transparent)
+        layer.shadowOpacity = opacity
+        /* Offset refers to where and to what extent a shadow is offset from the view (in points)
+         The default offset size is (0, -1), which indicates a shadow one point above the text. */
+        layer.shadowOffset = offset
+        // Prevent layers of view from extending beyond the view
+        layer.masksToBounds = masksToBounds
     }
     
     func centerY(in superView: UIView) {
@@ -27,7 +46,7 @@ extension UIView {
     func center(in superView: UIView) {
         center = superView.center
     }
-
+    
     var width: CGFloat {
         return frame.size.width
     }
@@ -51,9 +70,10 @@ extension UIView {
     var trailing: CGFloat {
         return leading + width
     }
+    
 }
 
-    // MARK: - UIStackView
+// MARK: - UIStackView
 
 extension UIStackView {
     func addArrangedSubviews(_ subviews: UIView...) {
@@ -63,18 +83,23 @@ extension UIStackView {
     }
 }
 
-    // MARK: - UIViewController
+// MARK: - UIViewController
 
 extension UIViewController {
-    func presentAlert(alert: AlertModel, actions: [AlertActionModel]) {
+    func presentAlert(alert: AlertModel, actions: AlertActionModel...) {
+        
+        let isPad = UIDevice.current.isPad
+        
         let alert = UIAlertController(title: alert.title,
                                       message: alert.message,
-                                      preferredStyle: alert.style)
+                                      // ensures that if device is iPad, an actionSheet will not be presented
+                                      preferredStyle: isPad ? .alert : alert.style)
         for action in actions {
             alert.addAction(UIAlertAction(title: action.title,
                                           style: action.style,
                                           handler: action.handler))
         }
+        
         present(alert, animated: true)
     }
     
@@ -94,12 +119,51 @@ extension UIViewController {
     }
 }
 
-    // MARK: - UIAlertController
+// MARK: - UIAlertController
 
 extension UIAlertController {
-    func addAction(_ action: AlertActionModel) {
-        addAction(UIAlertAction(title: action.title,
-                                style: action.style,
-                                handler: nil))
+    func addActions(_ actions: AlertActionModel...) {
+        for action in actions {
+            addAction(UIAlertAction(title: action.title,
+                                    style: action.style,
+                                    handler: nil))
+        }
+    }
+    
+    func addTextField(placeholder: String) {
+        addTextField { textField in
+            textField.placeholder = placeholder
+        }
+    }
+    
+    func addPickerView(delegateAndDataSource: (UIPickerViewDelegate & UIPickerViewDataSource)) {
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: 250,height: 300)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: Constants.width, height: Constants.width))
+        pickerView.delegate = delegateAndDataSource
+        pickerView.dataSource = delegateAndDataSource
+        vc.view.addSubview(pickerView)
+        setValue(vc, forKey: "contentViewController")
+    }
+}
+
+// MARK: - UIDevice
+
+extension UIDevice {
+    var isPad: Bool {
+        return UIDevice.current.userInterfaceIdiom == .pad
+    }
+}
+
+// MARK: - Int
+
+extension Int {
+    
+    func inMinutes() -> Int {
+        return self / 60
+    }
+    
+    func inSeconds() -> Int {
+        return self * 60
     }
 }

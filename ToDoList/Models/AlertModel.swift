@@ -31,6 +31,10 @@ struct Alert {
     static let areYouSure = AlertModel(title: "Are you sure you would like to end this timer?",
                                        message: nil,
                                        style: .actionSheet)
+    
+    static let greatWork = AlertModel(title: "Great Work!",
+                                      message: "You've completed a focus session.",
+                                      style: .alert)
 }
 
 struct AlertAction {

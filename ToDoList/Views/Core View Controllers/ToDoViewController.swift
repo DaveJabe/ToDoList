@@ -172,12 +172,11 @@ class ToDoViewController: UIViewController {
         let alert = UIAlertController(title: "Add New Item",
                                       message: nil,
                                       preferredStyle: .alert)
-        alert.addTextField { textfield in
-            textfield.placeholder = "Enter new item here"
-        }
         
-        let save = UIAlertAction(title: "Save",
-                                 style: .default) { [weak self] _ in
+        alert.addTextField(placeholder: "Enter new item here")
+        
+        let save = AlertActionModel(title: "Save",
+                                    style: .default) { [weak self] _ in
             
             guard let text = alert.textFields?.first?.text else {
                 return
@@ -188,13 +187,12 @@ class ToDoViewController: UIViewController {
                     self?.refreshData()
                 }
                 else {
-                    self?.presentAlert(alert: Alert.emptyTextAlert, actions: [AlertAction.ok])
+                    self?.presentAlert(alert: Alert.emptyTextAlert, actions: AlertAction.ok)
                 }
             }
         }
         
-        alert.addAction(save)
-        alert.addAction(AlertAction.cancel)
+        alert.addActions(save, AlertAction.cancel)
         present(alert, animated: true)
     }
     
